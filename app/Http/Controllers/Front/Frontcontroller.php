@@ -169,17 +169,17 @@ class Frontcontroller extends Controller
              $checkagain = Members::where(['memberMobile'=>$request->mobileNo])->first();
              if($checkagain){
                 if($checkagain->progressStatus == 'inprocess'){
-                    $request->session()->flash('message','Sorry Member Busy to caste Vote soo Please Dont use it again!');
+                    $request->session()->flash('message','Apologies, the member was unavailable to cast their vote. Kindly refrain from using their name again for this purpose.');
                     return redirect('/');
                 }else if($checkagain->progressStatus == 'complete'){
-                    $request->session()->flash('message','Sorry You are Already Cast your vote');
+                    $request->session()->flash('message','Apologies, but you have already submitted your vote!');
                     return redirect('/');
                 }else{
-                    $request->session()->flash('message','Oops! Data not Found');
+                    $request->session()->flash('message','No valid information found.');
                     return redirect('/');
                 }
              }else{
-                 $request->session()->flash('message','Oops! Data not Found');
+                 $request->session()->flash('message','No valid information found.');
                     return redirect('/');
              }
             
@@ -197,7 +197,7 @@ class Frontcontroller extends Controller
             Session::put('memberStatus','false');
             return redirect('/ballot-paper');
         }else{
-            $request->session()->flash('message','Oops! Your OTP Code Incorrect!');
+            $request->session()->flash('message','Invalid OTP. Please check the code and try again.');
             return redirect('/otp');
         }
     }
@@ -242,7 +242,7 @@ class Frontcontroller extends Controller
                         $data = $Insert->save();
                     }
         
-                    $msg = "Thank you! Your vote has been recorded successfully and securely.";
+                    $msg = "Thank you! Your vote has been recorded successfully.";
                     session()->forget('memberStatus');
                 }
             }
