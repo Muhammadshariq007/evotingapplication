@@ -6,6 +6,10 @@
         <h1 class="text-center fs-2 fw-bold">Electronic Voting System</h1>
 
 
+
+
+        @if($status == 'open')
+
         <form method="post" action="{{route('front.caste')}}">
             @csrf
             <div class="form-group d-flex flex-wrap gap-2">
@@ -34,8 +38,6 @@
             </div>
         </form>
 
-        @if($status == 'open')
-
         @if(Session::has('message'))
 
         <p class="m-0 text-center text-danger">{{ Session::get('message') }}</p>
@@ -45,21 +47,19 @@
 
         @elseif($status == 'closed')
 
-
-
-        <!-- <h5 class="text-danger text-center">Voting is closed.</h5> -->
+        <h5 class="text-danger text-center">Voting is closed.</h5>
         @else
 
         <h5 class="text-center text-danger">Voting starts soon. Please wait.</h5>
 
         <div id="countdown" class="text-center fs-3"></div>
         <script>
-        // JavaScript to handle countdown
+        JavaScript to handle countdown
         let remainingTime = {
             {
                 $remainingTime
             }
-        }; // Time in seconds
+        };
 
         function updateCountdown() {
             const hours = Math.floor(remainingTime / 3600);
@@ -80,7 +80,7 @@
             }
         }
 
-        // Start the countdown
+        Start the countdown
         updateCountdown(); // Initial call
         const countdownInterval = setInterval(updateCountdown, 1000);
         </script>
