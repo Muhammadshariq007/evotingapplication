@@ -6,17 +6,6 @@
         <h1 class="text-center fs-2 fw-bold">Electronic Voting System</h1>
 
 
-        @if($status == 'open')
-
-        @if(Session::has('message'))
-
-        <p class="m-0 text-center text-danger">{{ Session::get('message') }}</p>
-
-        @endif
-
-
-        @elseif($status == 'closed')
-
         <form method="post" action="{{route('front.caste')}}">
             @csrf
             <div class="form-group d-flex flex-wrap gap-2">
@@ -44,6 +33,19 @@
                 <button type="submit" class="btn btn-primary">Continue <span>></span></button>
             </div>
         </form>
+
+        @if($status == 'open')
+
+        @if(Session::has('message'))
+
+        <p class="m-0 text-center text-danger">{{ Session::get('message') }}</p>
+
+        @endif
+
+
+        @elseif($status == 'closed')
+
+
 
         <h5 class="text-danger text-center">Voting is closed.</h5>
         @else
