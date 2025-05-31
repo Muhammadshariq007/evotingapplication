@@ -47,7 +47,7 @@
 
 
 
-        <h5 class="text-danger text-center">Voting is closed.</h5>
+        <!-- <h5 class="text-danger text-center">Voting is closed.</h5> -->
         @else
 
         <h5 class="text-center text-danger">Voting starts soon. Please wait.</h5>
